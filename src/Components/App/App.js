@@ -21,13 +21,16 @@ class App extends Component {
       ]
     };
     this.addTrack = this.addTrack.bind(this);
-  } 
+  }
 
   addTrack(track) {
-    if ({this.state.searchResults.id} !== {this.state.playlistTracks.id}) {
-      return this.state.playlistTracks.push(track)
+    let tracks = this.state.playlistTracks;
+    if (!tracks.includes(track.id)) {
+      tracks.push(track.id);
     }
-    this.setState({this.playlistTracks = this.playlistTracks})
+    this.setState({
+      playlistTracks: tracks
+    })
   }
 
   render() {
