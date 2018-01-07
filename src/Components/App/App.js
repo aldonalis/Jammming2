@@ -3,24 +3,15 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
-//import Spotify from '../src/util/Spotify.js';
 import Spotify from '../../util/Spotify.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: [
-        {name: 'a', artist: 'a', album: 'a', id: 1},
-        {name: 'a', artist: 'a', album: 'a', id: 2},
-        {name: 'a', artist: 'a', album: 'a', id: 3}
-      ],
-      playlistName: 'Ada Playlist',
-      playlistTracks: [
-        {name: 'b', artist: 'b', album: 'b', id: 4, uri: 'x'},
-        {name: 'b', artist: 'b', album: 'b', id: 5, uri: 'x'},
-        {name: 'b', artist: 'b', album: 'b', id: 6, uri: 'x'}
-      ]
+      searchResults: [],
+      playlistName: '',
+      playlistTracks: []
     };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -78,12 +69,11 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar />
+          <SearchBar onSearch={this.search}/>
           <div className="App-playlist">
             <SearchResults
               searchResults={this.state.searchResults}
               onAdd={this.addTrack}
-              onSearch={this.Spotify.search}
             />
             <Playlist
               playlistName={this.state.playlistName}
